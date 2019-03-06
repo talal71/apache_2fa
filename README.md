@@ -43,12 +43,12 @@ Add the following configuration to Apache configuration under appropriate Virtua
 
     RewriteCond %{REQUEST_URI} !^/auth/
     RewriteCond %{HTTP_COOKIE} !^.*2FA_Auth=([a-zA-Z0-9]+)
-    RewriteRule ^(.*)$ /auth/auth?$1?%{QUERY_STRING} [L,R=302]
+    RewriteRule ^/?(dir|dir1\/dir2|phpmyadmin).*$ /auth/auth?$1?%{QUERY_STRING} [L,R=302]
 
     RewriteCond %{REQUEST_URI} !^/auth/
     RewriteCond %{HTTP_COOKIE} ^.*2FA_Auth=([a-zA-Z0-9]+)
     RewriteCond <path to apache_2fa>/state/%1 !-f
-    RewriteRule ^(.*)$ /auth/auth?$1?%{QUERY_STRING} [L,R=302]
+    RewriteRule ^/?(dir|dir1\/dir2|phpmyadmin).*$ /auth/auth?$1?%{QUERY_STRING} [L,R=302]
 
     ScriptAlias /auth/ <path to_apache 2fa (note the trailing slash)>/
 
